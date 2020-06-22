@@ -35,9 +35,6 @@ add_subdirectory(cyber/proto)
 
 add_subdirectory(cyber/io/example)
 
-#build googletest
-add_subdirectory(googletest)
-
 #collect source files
 file(GLOB CYBER_SRCS 
 	"${PROJECT_SOURCE_DIR}/cyber/base/*.cc"
@@ -124,4 +121,5 @@ install(DIRECTORY ${PROJECT_BINARY_DIR}/cyber DESTINATION ${CMAKE_INSTALL_INCLUD
 install(FILES cyber/setup.bash DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 install(DIRECTORY cyber/conf DESTINATION ${CMAKE_INSTALL_PREFIX})
+install(DIRECTORY third_party DESTINATION ${CMAKE_INSTALL_PREFIX})
 install(DIRECTORY cyber/python DESTINATION ${CMAKE_INSTALL_LIBDIR})
