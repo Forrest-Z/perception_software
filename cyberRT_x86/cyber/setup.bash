@@ -14,6 +14,7 @@ service_path="${CYBER_PATH}/tools/cyber_service"
 
 #protobuf
 export LD_LIBRARY_PATH=${third_path}/protobuf/lib:$LD_LIBRARY_PATH
+export PATH=${third_path}/protobuf/bin:$PATH
 
 #fastcdr
 export LD_LIBRARY_PATH=${third_path}/fastcdr/lib:$LD_LIBRARY_PATH

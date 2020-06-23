@@ -31,6 +31,9 @@ Key benefits of using Cyber RT:
 - 安装python3.5-dev:
   + sudo apt-get install python3.5-dev
 
+- 安装googletest: 
+  + https://github.com/google/googletest 下载1.10.0版本
+
 - 下载安装gflags, 
   + https://github.com/gflags/gflags 下载2.2.0版本（安装动态库）
 
