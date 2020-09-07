@@ -1,12 +1,12 @@
-#include "test_color_converting.h"
+#include "imgproc_c/testing/test_color_converting.h"
 
 extern "C"
 {
-#include "colorConverting/color_converting.h"
+#include "imgproc_c/cvtcolor/color_converting.h"
 }
 
-#include "testprocesstime.h"
-#include "test_utility.h"
+#include "imgproc_c/testing/testprocesstime.h"
+#include "imgproc_c/testing/test_utility.h"
 
 void testColorConverting()
 {

@@ -1,7 +1,7 @@
 #include "base/sobel.h"
 #include <string.h>
 #include <stdlib.h>
-#include "common/utility.h"
+#include "imgproc_c/common/utility.h"
 
 //use in prefilterYSobel function
 #define OFS (1024) // 256*4

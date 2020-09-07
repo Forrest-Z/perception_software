@@ -1,4 +1,4 @@
-#include "test_utility.h"
+#include "imgproc_c/testing/test_utility.h"
 
 void logMat(const char* fileName, const cv::Mat image)
 {

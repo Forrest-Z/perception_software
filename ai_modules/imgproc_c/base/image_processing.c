@@ -2,7 +2,7 @@
 #include <string.h>
 #include <math.h>
 
-#include "common/utility.h"
+#include "imgproc_c/common/utility.h"
 
 void computeDerivativeX(const unsigned char *src, int width, int height, short *dst)
 {

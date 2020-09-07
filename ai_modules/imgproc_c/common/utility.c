@@ -1,4 +1,4 @@
-#include "utility.h"
+#include "imgproc_c/common/utility.h"
 
 int intMin(const int num1, const int num2)
 {

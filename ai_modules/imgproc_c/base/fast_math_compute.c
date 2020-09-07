@@ -2,7 +2,7 @@
 #include <math.h>
 #include <float.h>
 
-#include "common/utility_data_structure.h"
+#include "imgproc_c/common/utility_data_structure.h"
 
 //use in fastAtan2 function
 static const float atan2_p1 = 0.9997878412794807f*(float)(180/MY_PI);

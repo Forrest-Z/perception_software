@@ -1,11 +1,11 @@
-#include "optical_flow/lk_opticalflow.h"
+#include "imgproc_c/optical_flow/lk_opticalflow.h"
 #include <string.h>
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 
-#include "common/utility.h"
+#include "imgproc_c/common/utility.h"
 
 static lk_inner *g_pLkInner = NULL;
 

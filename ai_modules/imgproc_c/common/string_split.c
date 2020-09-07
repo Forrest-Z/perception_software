@@ -1,4 +1,4 @@
-#include "common/string_split.h"
+#include "imgproc_c/common/string_split.h"
 #include <stdlib.h>
 #include <string.h>
 

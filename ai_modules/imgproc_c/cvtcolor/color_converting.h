@@ -1,7 +1,7 @@
 #ifndef COLOR_CONVERTING_H
 #define COLOR_CONVERTING_H
 
-#include "base/image_data_structure.h"
+#include "imgproc_c/base/image_data_structure.h"
 
 void rgbToGray(const ElementRGB *rgbImage, int width, int height, unsigned char *grayImage);
 

@@ -1,8 +1,8 @@
 #ifndef LK_OPTICALFLOW_H
 #define LK_OPTICALFLOW_H
 
-#include "optical_flow/opticalflow_data_struct.h"
-#include "optical_flow/lk_trajectory.h"
+#include "imgproc_c/optical_flow/opticalflow_data_struct.h"
+#include "imgproc_c/optical_flow/lk_trajectory.h"
 
 #define MAX_THREAD_NUM 4
 

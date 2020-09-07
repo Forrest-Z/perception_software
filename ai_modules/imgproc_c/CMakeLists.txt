@@ -17,9 +17,8 @@ file(GLOB IMGPROC_SRCS
 	"${PROJECT_SOURCE_DIR}/tracking/*.c"
 	)
 
-#build cyber library
+#build imgproc_c library
 add_library(imgproc_c SHARED ${IMGPROC_SRCS})
-target_link_libraries(imgproc_c)
 
 install(DIRECTORY "${ai_algorithm_SOURCE_DIR}/imgproc_c" DESTINATION include ${CMAKE_INSTALL_INCLUDEDIR} FILES_MATCHING PATTERN "*.h")
 install(FILES "${ai_algorithm_BINARY_DIR}/libimgproc_c.so" DESTINATION lib ${CMAKE_INSTALL_LIBDIR})

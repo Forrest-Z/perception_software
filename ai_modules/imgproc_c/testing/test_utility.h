@@ -11,7 +11,7 @@
 
 extern "C"
 {
-#include "baseAlgorithm/image_data_structure.h"
+#include "imgproc_c/base/image_data_structure.h"
 }
 void logMat(const char* fileName, const cv::Mat image);
 

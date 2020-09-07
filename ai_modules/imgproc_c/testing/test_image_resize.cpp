@@ -1,12 +1,12 @@
-#include "test_image_resize.h"
+#include "imgproc_c/testing/test_image_resize.h"
 
 extern "C"
 {
-#include "imageResize/image_resize.h"
+#include "imgproc_c/image_resize/image_resize.h"
 }
 
-#include "testprocesstime.h"
-#include "test_utility.h"
+#include "imgproc_c/testing/testprocesstime.h"
+#include "imgproc_c/testing/test_utility.h"
 
 #define RGB 0
 

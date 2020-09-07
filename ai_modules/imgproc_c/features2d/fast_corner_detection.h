@@ -1,7 +1,7 @@
 #ifndef FAST_CORNER_DETECTION_H
 #define FAST_CORNER_DETECTION_H
 
-#include "base/image_data_structure.h"
+#include "imgproc_c/base/image_data_structure.h"
 
 #define MAX_FAST_CORNERS 10000
 

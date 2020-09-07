@@ -1,8 +1,8 @@
-#include "common/quick_sort.h"
+#include "imgproc_c/common/quick_sort.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "common/utility.h"
+#include "imgproc_c/common/utility.h"
 
 #define DEPTH 1024
 

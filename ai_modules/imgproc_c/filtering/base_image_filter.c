@@ -1,4 +1,4 @@
-#include  "filtering/base_image_filter.h"
+#include  "imgproc_c/filtering/base_image_filter.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,11 +1,11 @@
-#include "image_resize/image_resize.h"
+#include "imgproc_c/image_resize/image_resize.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <float.h>
 #include <math.h>
 
-#include "common/utility.h"
+#include "imgproc_c/common/utility.h"
 
 void computeShrinkedImage(const unsigned char *grayImage, int width, int height, int newWidth, int newHeight, unsigned char *dstImage)
 {

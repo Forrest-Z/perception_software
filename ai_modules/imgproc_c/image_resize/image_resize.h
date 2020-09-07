@@ -1,7 +1,7 @@
 #ifndef IMAGE_RESIZE_H
 #define IMAGE_RESIZE_H
 
-#include "base/image_data_structure.h"
+#include "imgproc_c/base/image_data_structure.h"
 
 void computeShrinkedImage(const unsigned char *grayImage, int width, int height, int newWidth, int newHeight, unsigned char *dstImage);
 

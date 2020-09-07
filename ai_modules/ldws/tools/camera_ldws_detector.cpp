@@ -8,7 +8,7 @@
 #include <string>
 #include <cstdio>
 #include <cstdlib>
-#include <ldws_detector/LDWS_Interface.h>
+#include "ldws_detector/LDWS_Interface.h"
 
 #define PI 3.1415926
 

@@ -1,12 +1,12 @@
-#include "test_image_filtering.h"
+#include "imgproc_c/testing/test_image_filtering.h"
 
 extern "C"
 {
-#include "imageFiltering/base_image_filter.h"
+#include "imgproc_c/filtering/base_image_filter.h"
 }
 
-#include "testprocesstime.h"
-#include "test_utility.h"
+#include "imgproc_c/testing/testprocesstime.h"
+#include "imgproc_c/testing/test_utility.h"
 
 void testImageFiltering()
 {

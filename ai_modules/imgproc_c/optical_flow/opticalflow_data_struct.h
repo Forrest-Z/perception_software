@@ -1,7 +1,7 @@
 #ifndef OPTICALFLOW_DATA_STRUCT_H
 #define OPTICALFLOW_DATA_STRUCT_H
 
-#include "base/image_data_structure.h"
+#include "imgproc_c/base/image_data_structure.h"
 
 typedef struct CornerPoint
 {

@@ -2,7 +2,7 @@
 #define LK_TRAJECTORY_H
 
 #include <math.h>
-#include "optical_flow/opticalflow_data_struct.h"
+#include "imgproc_c/optical_flow/opticalflow_data_struct.h"
 
 #define  MAX_TRAJECY_NUM 1024
 #define  MAX_POINT_NUM_PER_TRAJECY 64

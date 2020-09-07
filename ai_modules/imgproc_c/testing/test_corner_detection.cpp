@@ -1,12 +1,12 @@
-#include "test_corner_detection.h"
+#include "imgproc_c/testing/test_corner_detection.h"
 
 extern "C"
 {
-#include "features2d/fast_corner_detection.h"
+#include "imgproc_c/features2d/fast_corner_detection.h"
 }
 
-#include "testprocesstime.h"
-#include "test_utility.h"
+#include "imgproc_c/testing/testprocesstime.h"
+#include "imgproc_c/testing/test_utility.h"
 
 static int processVideo(const char* videoPath)
 {

@@ -1,5 +1,5 @@
-#include "features2d/fast_corner_detection.h"
-#include "common/utility.h"
+#include "imgproc_c/features2d/fast_corner_detection.h"
+#include "imgproc_c/common/utility.h"
 
 void fast9_16(const unsigned char *image, const int imageWidth, const int imageHeight, int threshold,
              int startX, int endX, int startY, int endY, int* cornerNumber, FloatPoint *fastCorner)

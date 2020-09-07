@@ -1,4 +1,4 @@
-#include "clustering/clustering_rect.h"
+#include "imgproc_c/clustering/clustering_rect.h"
 #include "common/utility.h"
 #include <stdlib.h>
 #include <memory.h>

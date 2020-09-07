@@ -1,8 +1,8 @@
-#include "optical_flow/lk_trajectory.h"
+#include "imgproc_c/optical_flow/lk_trajectory.h"
 #include <stdlib.h>
 #include <string.h>
 #include <memory.h>
-#include "common/utility.h"
+#include "imgproc_c/common/utility.h"
 
 void  addTrajectory(Trajectory  *pTrajecy, int listId, CornerPoint *pConner)
 {

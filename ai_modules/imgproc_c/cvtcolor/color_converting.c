@@ -1,8 +1,8 @@
-#include "cvtcolor/color_converting.h"
+#include "imgproc_c/cvtcolor/color_converting.h"
 #include <math.h>
 #include <float.h>
 #include <memory.h>
-#include "common/utility.h"
+#include "imgproc_c/common/utility.h"
 
 //converting from RGB to LUV
 #define LUV_LOOKUP_TABLE_SIZE 2048

@@ -1,13 +1,13 @@
-#include "test_opticalflow.h"
+#include "imgproc_c/testing/test_opticalflow.h"
 #include <vector>
 
 extern "C"
 {
-#include "opticalFlow/lk_opticalflow.h"
+#include "imgproc_c/optical_flow/lk_opticalflow.h"
 }
 
-#include "testprocesstime.h"
-#include "test_utility.h"
+#include "imgproc_c/testing/testprocesstime.h"
+#include "imgproc_c/testing/test_utility.h"
 
 static void processImage(const char* imagePath)
 {
@@ -56,6 +56,7 @@ static int processVideo(const char* videoPath)
     video.open(videoPath);
     if(!video.isOpened())
     {
+        printf("open video fail!\n");
         return -1;
     }
 
