@@ -1,0 +1,12 @@
+# Define all coms in DAG streaming.
+module_config {
+    module_library : "/home/lpj/Software/cyberRT/lib/libpandarsdk_driver_component.so"
+
+    components {
+      class_name : "PandarSDKDriverComponent"
+      config {
+        name : "pandarsdk_driver"
+        config_file_path : "/home/lpj/github/perception_software/drivers/lidar/pandar/conf/pandar40p_conf.pb.txt"
+      }
+    }
+}

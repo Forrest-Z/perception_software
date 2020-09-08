@@ -1,0 +1,33 @@
+syntax = "proto2";
+
+package drivers.pandar;
+
+import "pandar.proto";
+
+message PandarConfig {
+  optional string frame_id = 1;
+  optional string scan_channel = 2;
+  optional double rpm = 3 [default = 600.0];
+  optional pandar.Model model = 4;
+  optional pandar.Mode mode = 21;
+  optional string pcap = 5;
+  optional int32 prefix_angle = 6;
+  optional int32 firing_data_port = 7;
+  optional int32 positioning_data_port = 8;
+  optional bool use_sensor_sync = 9;
+  optional double max_range = 10;
+  optional double min_range = 11;
+  optional double max_angle = 12;
+  optional double min_angle = 13;
+  optional double view_direction = 14;
+  optional double view_width = 15;
+  optional bool calibration_online = 16;
+  optional string calibration_file = 17;
+  optional bool organized = 18;
+  optional string convert_channel_name = 19;
+  optional int32 npackets = 20;
+  optional bool use_gps_time = 23;
+  optional bool use_poll_sync = 24;
+  optional bool is_main_frame = 25;
+  optional bool is_single_control_machine = 26 [default = true];
+}

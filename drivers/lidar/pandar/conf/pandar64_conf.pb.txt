@@ -1,0 +1,17 @@
+frame_id: "pandar64"
+scan_channel: "/apollo/sensor/pandar64/PandarScan"
+rpm: 600.0
+model: PANDAR64
+mode: STRONGEST
+prefix_angle: 18000
+firing_data_port: 2368
+use_sensor_sync: false
+max_range: 100.0
+min_range: 2.0 
+use_gps_time: true
+calibration_online: false
+calibration_file: ""
+organized: false
+convert_channel_name: "/apollo/sensor/pandar64/PointCloud2"
+use_poll_sync: true
+is_main_frame: true

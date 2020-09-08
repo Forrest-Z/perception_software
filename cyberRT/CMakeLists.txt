@@ -29,7 +29,7 @@ else()
 endif()
 
 #include dependencies
-include(cmake/Dependencies.cmake)
+include(cmake/cyber_dependencies.cmake)
 
 #build proto files
 add_subdirectory(cyber/proto)

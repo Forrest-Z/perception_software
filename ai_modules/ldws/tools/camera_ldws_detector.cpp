@@ -293,9 +293,9 @@ int testLD(const char *videoName, const char *ldwsConfigFile, const char* ldwsCu
 
 int main(int argc, char **argv)
 {
-    const std::string videoPath = "/home/lpj/github/L4Software/src/perception/perception_simulation/data/Mapa_20180605145011_stream0_1_20.mp4";
-    const std::string ldwsConfigFile = "/home/lpj/github/L4Software/src/perception/perception_simulation/data/param_camera.dat";
-    const std::string ldwsCustomCalibration = "/home/lpj/github/L4Software/src/perception/perception_simulation/data/CarCalibration.txt";
+    const std::string videoPath = "/home/lpj/github/data/day/Mapa_20180605145011_stream0_1_20.mp4";
+    const std::string ldwsConfigFile = "/home/lpj/github/perception_software/ai_modules/ldws/data/param_camera_MaPa.dat";
+    const std::string ldwsCustomCalibration = "/home/lpj/github/perception_software/ai_modules/ldws/data/CarCalibration_MaPa.txt";
     testLD(videoPath.c_str(), ldwsConfigFile.c_str(), ldwsCustomCalibration.c_str());
     return 0;
 }

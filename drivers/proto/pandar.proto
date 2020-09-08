@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+package drivers.pandar;
+
+import "header.proto";
+
+enum Model {
+  UNKOWN = 0;
+  PANDAR64 = 1;
+  PANDAR40P = 2;
+}
+
+enum Mode {
+  STRONGEST = 1;
+  LAST = 2;
+  DUAL = 3;
+}
+
+message PandarPacket {
+  optional uint64 stamp = 1;
+  optional bytes data = 2;
+}
+
+message PandarScan {
+  optional Header header = 1;
+  optional Model model = 2;  // pandar device model
+  optional Mode mode = 3;    // pandar work mode
+
+  repeated PandarPacket firing_pkts = 4;
+
+  // for HDL32 and VLP16
+  repeated PandarPacket positioning_pkts = 5;
+  // pandar device serial number, corresponds to a specific calibration file
+  optional string sn = 6;
+  optional uint64 basetime = 7 [default = 0];
+}
