@@ -1,17 +1,17 @@
 cmake_minimum_required(VERSION 3.12)
 
 #project setting
-project(drivers)
+project(drivers LANGUAGES C CXX CUDA)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 SET(CMAKE_INCLUDE_SYSTEM_FLAG_C "-I")
 SET( CMAKE_INCLUDE_SYSTEM_FLAG_CXX "-I" CACHE STRING "" FORCE )
 SET( CMAKE_INCLUDE_SYSTEM_FLAG_CUDA "-I" CACHE STRING "" FORCE )
-add_definitions(-std=c++11)
 
 #include dependencies
 include(cmake/cyber_dependencies.cmake)
@@ -26,6 +26,12 @@ add_subdirectory(proto)
 
 #build pandar
 add_subdirectory(lidar/pandar)
+
+#build pandar
+add_subdirectory(camera)
+
+#build visualizer
+add_subdirectory(tools/visualizer)
 
 
 install(DIRECTORY "${PROJECT_BINARY_DIR}/proto" DESTINATION include ${CMAKE_INSTALL_INCLUDEDIR} FILES_MATCHING PATTERN "*.h")

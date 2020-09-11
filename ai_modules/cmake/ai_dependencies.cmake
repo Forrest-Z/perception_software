@@ -5,7 +5,7 @@ message(STATUS "${OpenCV_INCLUDE_DIRS}, ${OpenCV_LIBRARIES}")
 include_directories(${OpenCV_INCLUDE_DIRS})
 link_directories(${OpenCV_LIBRARIES})
 
-FIND_PACKAGE( OpenMP REQUIRED)
+find_package(OpenMP REQUIRED)
 if(OPENMP_FOUND)
 message(“OPENMP FOUND”)
 set(CMAKE_C_FLAGS “${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}”)

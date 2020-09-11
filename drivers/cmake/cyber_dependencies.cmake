@@ -11,7 +11,7 @@ set(Protobuf_PREFIX_PATH
 )
 list(APPEND CMAKE_PREFIX_PATH "${Protobuf_PREFIX_PATH}")
 find_package(Protobuf REQUIRED NOCONFIG)
-message(STATUS "version: ${Protobuf_VERSION}")
+message(STATUS "Protobuf version: ${Protobuf_VERSION}")
 message(STATUS "Protobuf: ${Protobuf_INCLUDE_DIRS}, ${Protobuf_LIBRARIES}")
 include_directories(${Protobuf_INCLUDE_DIRS})
 link_directories(${Protobuf_LIBRARIES})

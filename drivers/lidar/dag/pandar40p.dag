@@ -1,6 +1,6 @@
 # Define all coms in DAG streaming.
 module_config {
-    module_library : "/home/lpj/Software/cyberRT/lib/libpandarsdk_driver_component.so"
+    module_library : "/home/lpj/github/perception_software/drivers/build/libpandarsdk_driver_component.so"
 
     components {
       class_name : "PandarSDKDriverComponent"
