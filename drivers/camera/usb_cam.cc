@@ -127,7 +127,7 @@ bool UsbCam::init(const std::shared_ptr<CameraConfig>& cameraconfig) {
   frame_drop_interval_ = static_cast<float>(0.9 / config_->frame_rate());
 
   //added by hezb 
-  use_gpu_ = false;
+  use_gpu_ = true;
   //added end
 
   #ifndef __SYNC_BY_GPIO__
