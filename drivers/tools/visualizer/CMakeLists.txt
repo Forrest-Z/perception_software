@@ -46,7 +46,7 @@ add_definitions(
     ${Qt5Gui_DEFINITIONS}
 )
 
-add_executable(${PROJECT_NAME} ${QT_SRCS} ${QT_HDRS} ${MOC} ${QT_UIS} ${QT_QRSCS})
+add_executable(${PROJECT_NAME} ${QT_SRCS} ${QT_HDRS} ${MOC} ${UI_HDRS} ${RCC})
 target_link_libraries(${PROJECT_NAME}
     Qt5::Widgets
     Qt5::Core
