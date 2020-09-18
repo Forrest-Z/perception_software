@@ -21,8 +21,8 @@ message ObjectListStatus_60A {
 message RadarState_201 {
   optional uint32 max_distance = 1;
   optional uint32 radar_power = 2;
-  optional drivers.conti_radar.OutputType output_type = 3;
-  optional drivers.conti_radar.RcsThreshold rcs_threshold = 4;
+  optional drivers.conti_radar.config.OutputType output_type = 3;
+  optional drivers.conti_radar.config.RcsThreshold rcs_threshold = 4;
   optional bool send_quality = 5;
   optional bool send_ext_info = 6;
 }
@@ -38,7 +38,7 @@ message ContiRadarObs {
   //        <----------------
   //        ooooooooooooo   //radar front surface
 
-  optional Header header = 1;
+  optional common.Header header = 1;
   optional bool clusterortrack = 2;  // 0 = track, 1 = cluster
   optional int32 obstacle_id = 3;    // obstacle Id
   // longitude distance to the radar; (+) = forward; unit = m
@@ -93,7 +93,7 @@ message ContiRadarObs {
 }
 
 message ContiRadar {
-  optional Header header = 1;
+  optional common.Header header = 1;
   repeated ContiRadarObs contiobs = 2;  // conti radar obstacle array
   optional RadarState_201 radar_state = 3;
   optional ClusterListStatus_600 cluster_list_status = 4;

@@ -1,0 +1,16 @@
+module_config {
+  module_library : "/home/lpj/github/perception_software/ai_modules/build/liblidar_detection_component.so"
+
+ components {
+    class_name : "LidarDetectionComponent"
+    config {
+      name: "Pandar64Detection"
+      config_file_path: "/home/lpj/github/perception_software/ai_modules/lidar_detection/conf/pandar64_detection_conf.pb.txt"
+      flag_file_path: "/home/lpj/github/perception_software/ai_modules/lidar_detection/dag/pandar64_lidar_detection.dag"
+      readers {
+          channel: "/apollo/sensor/pandar64/PointCloud2"
+        }
+    }
+  }
+
+}

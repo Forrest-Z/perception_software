@@ -35,7 +35,7 @@
 #include <iostream>
 
 // headers in local files
-#include "lidar_detection/lib/detection/lidar_point_pillars/point_pillars.h"
+#include "lidar_detection/lidar_point_pillars/point_pillars.h"
 
 namespace apollo {
 namespace perception {

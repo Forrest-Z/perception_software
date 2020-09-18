@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-package drivers.conti_radar;
+package drivers.conti_radar.config;
 
 enum OutputType {
   OUTPUT_TYPE_NONE = 0;

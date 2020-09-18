@@ -9,8 +9,9 @@ add_subdirectory(pandar_sdk)
 
 #collect source files
 file(GLOB COMMON_SRCS
-    "${drivers_BINARY_DIR}/common/time/*.cc"
-    "${drivers_BINARY_DIR}/common/util/*.cc"
+    "${drivers_SOURCE_DIR}/common/configs/*.cc"
+    "${drivers_SOURCE_DIR}/common/time/*.cc"
+    "${drivers_SOURCE_DIR}/common/util/*.cc"
 	)
 
 #build pandar_sdk library
@@ -20,6 +21,7 @@ target_link_libraries(pandarsdk_driver_component
     drivers_proto
     cyber 
     cyber_proto
+    gflags
 )
 
 install(FILES "${drivers_BINARY_DIR}/libpandarsdk_driver_component.so" DESTINATION lib ${CMAKE_INSTALL_LIBDIR})

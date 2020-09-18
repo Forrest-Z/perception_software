@@ -6,8 +6,8 @@ include_directories(${drivers_SOURCE_DIR})
 message(STATUS "drivers_SOURCE_DIR: " ${drivers_BINARY_DIR})
 message(STATUS "drivers_BINARY_DIR: " ${drivers_SOURCE_DIR})
 
-file(GLOB CYBER_PROTO_SRCS *.proto)
-PROTOBUF_GENERATE_CPP(	PROTO_SRCS PROTO_HDRS ${CYBER_PROTO_SRCS})
+file(GLOB DRIVER_PROTO_SRCS *.proto)
+PROTOBUF_GENERATE_CPP(	PROTO_SRCS PROTO_HDRS ${DRIVER_PROTO_SRCS})
 
 add_library(drivers_proto SHARED ${PROTO_SRCS} ${PROTO_HDRS})
 target_link_libraries(drivers_proto ${Protobuf_LIBRARIES})

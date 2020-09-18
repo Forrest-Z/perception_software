@@ -56,7 +56,7 @@ class PandarSDKDriverComponent : public Component<> {
   std::shared_ptr<CCObjectPool<PointCloud>> point_cloud_pool_ = nullptr;
   int pool_size_ = 8;
 
-  PandarConfig config_;
+  config::PandarConfig config_;
 
 };
 

@@ -32,7 +32,7 @@ namespace pandar {
 
 bool PandarSDKDriverComponent::Init() {
   AINFO << "PandarSDK driver component init";
-  PandarConfig pandar_config;
+  config::PandarConfig pandar_config;
   if (!GetProtoConfig(&pandar_config)) {
     AWARN << "Load config failed, config file" << config_file_path_;
     return false;

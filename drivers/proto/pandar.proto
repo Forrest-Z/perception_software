@@ -22,7 +22,7 @@ message PandarPacket {
 }
 
 message PandarScan {
-  optional Header header = 1;
+  optional common.Header header = 1;
   optional Model model = 2;  // pandar device model
   optional Mode mode = 3;    // pandar work mode
 

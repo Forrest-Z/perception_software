@@ -64,7 +64,7 @@ enum PixelFormat {
 }
 
 message Image {
-  optional Header header = 1;
+  optional common.Header header = 1;
   optional string frame_id = 2;
   optional double measurement_time = 3;
 
@@ -77,7 +77,7 @@ message Image {
 }
 
 message CompressedImage {
-  optional Header header = 1;
+  optional common.Header header = 1;
   optional string frame_id = 2;
 
   // Specifies the format of the data

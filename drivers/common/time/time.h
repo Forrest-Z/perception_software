@@ -33,10 +33,7 @@
 
 #include <cyber/common/log.h>
 #include "gflags/gflags.h"
-
-DEFINE_bool(use_cyber_time, false,
-            "Whether Clock::Now() gets time from system_clock::now() or from "
-            "Cyber.");
+#include "common/configs/config_gflags.h"
 
 /**
  * @namespace apollo::common::time
