@@ -5,11 +5,11 @@ third_path="${CYBER_PATH}/third_party"
 cyber_tool_path="${binary_path}/cyber/tools"
 recorder_path="${cyber_tool_path}/cyber_recorder"
 monitor_path="${cyber_tool_path}/cyber_monitor"
-PYTHON_LD_PATH="${library_path}/cyber/cyber_py3"
-launch_path="${CYBER_PATH}/tools/cyber_launch"
-channel_path="${CYBER_PATH}/tools/cyber_channel"
-node_path="${CYBER_PATH}/tools/cyber_node"
+launch_path="${cyber_tool_path}/cyber_launch"
+channel_path="${cyber_tool_path}/cyber_channel"
+node_path="${cyber_tool_path}/cyber_node"
 service_path="${CYBER_PATH}/tools/cyber_service"
+PYTHON_LD_PATH="${library_path}/cyber/cyber_py3"
 #qt_path=/usr/local/Qt5.5.1/5.5/gcc_64
 
 #protobuf
@@ -45,7 +45,7 @@ export PYTHONPATH=${PYTHON_LD_PATH}:${library_path}/python:$PYTHONPATH
 export CYBER_DOMAIN_ID=80
 export CYBER_IP=127.0.0.1
 
-export GLOG_log_dir=/home/$USER/cyber_data/data/log
+export GLOG_log_dir=/home/$USER/cyber_data/log
 export GLOG_alsologtostderr=0
 export GLOG_colorlogtostderr=1
 export GLOG_minloglevel=0
