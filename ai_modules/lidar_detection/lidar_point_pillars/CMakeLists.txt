@@ -9,6 +9,7 @@ file(GLOB POINT_PILLARS_SOURCES  ${CMAKE_CURRENT_LIST_DIR}/*.cc ${CMAKE_CURRENT_
 
 add_library(lidar_point_pillars SHARED ${POINT_PILLARS_SOURCES} ${POINT_PILLARS_HEADERS})
 target_link_libraries(lidar_point_pillars
+                      cuda
                       cublas
                       cudart
                       cudnn

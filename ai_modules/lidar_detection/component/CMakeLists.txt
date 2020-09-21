@@ -12,10 +12,10 @@ file(GLOB COMMON_SRCS
 	)
 
 file(GLOB APP_SRCS
-    "${ai_algorithm_SOURCE_DIR}/app/*.cc"
+    "${ai_algorithm_SOURCE_DIR}/lidar_detection/app/*.cc"
 	)
 
-#build pandar_sdk library
+#build lidar_detection_component library
 add_library(lidar_detection_component SHARED lidar_detection_component.cc ${APP_SRCS} ${COMMON_SRCS})
 target_link_libraries(lidar_detection_component 
     lidar_point_pillars
