@@ -15,9 +15,11 @@
  *****************************************************************************/
 #include "lidar_detection/component/lidar_detection_component.h"
 
-#include "cyber/time/time.h"
+#include "cyber/time/clock.h"
 #include "base/object_pool_types.h"
 #include "common/lidar_error_code.h"
+
+using ::apollo::cyber::Clock;
 
 namespace perception {
 namespace onboard {
@@ -52,7 +54,7 @@ bool LidarDetectionComponent::Proc(
   AINFO << std::setprecision(16)
         << "Enter detection component, message timestamp: "
         << message->measurement_time()
-        << " current timestamp: " << apollo::cyber::Time::Now().ToSecond();
+        << " current timestamp: " << Clock::NowInSeconds();
   std::shared_ptr<PerceptionObstacles> out_message(new (std::nothrow)
                                                        PerceptionObstacles);
   bool status = InternalProc(message, out_message);
@@ -80,18 +82,18 @@ bool LidarDetectionComponent::InternalProc(
   std::vector<std::shared_ptr<base::Object>> result_objects;
   std::shared_ptr<base::AttributePointCloud<base::PointF>> cloud = nullptr;
   cloud = base::PointFCloudPool::Instance().Get();
-  if (Preprocess(in_message, cloud)) {
+  if (!Preprocess(in_message, cloud)) {
     return false;
   }
   uint32_t seq_num = seq_num_.fetch_add(1);
   const double timestamp = in_message->measurement_time();
-  const double cur_time = apollo::cyber::Time::Now().ToSecond();
+  const double cur_time = Clock::NowInSeconds();
   const double start_latency = (cur_time - timestamp) * 1e3;
   AINFO << std::setprecision(16) << "FRAME_STATISTICS:Lidar:Start:msg_time["
         << timestamp << "]:sensor[" << sensor_name_ << "]:cur_time[" << cur_time
         << "]:cur_latency[" << start_latency << "]";
 
-  double publish_time = apollo::cyber::Time::Now().ToSecond();
+  double publish_time = Clock::NowInSeconds();
   ::common::Header* header = out_message->mutable_header();
   header->set_timestamp_sec(publish_time);
   header->set_module_name("perception_obstacle");

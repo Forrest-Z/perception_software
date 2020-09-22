@@ -49,7 +49,7 @@ add_subdirectory(cyber/examples)
 add_subdirectory(cyber/examples/proto)
 
 #build python wrapper
-add_subdirectory(cyber/py_wrapper)
+add_subdirectory(cyber/python)
 
 #build tools 
 add_subdirectory(cyber/tools)
@@ -61,4 +61,3 @@ install(FILES cyber/setup.bash DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 install(DIRECTORY cyber/conf DESTINATION ${CMAKE_INSTALL_PREFIX})
 install(DIRECTORY third_party/${CMAKE_SYSTEM_PROCESSOR}/ DESTINATION ${CMAKE_INSTALL_PREFIX}/third_party)
-install(DIRECTORY cyber/python DESTINATION ${CMAKE_INSTALL_LIBDIR})

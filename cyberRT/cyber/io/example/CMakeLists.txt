@@ -1,8 +1,11 @@
 project(io_example)
 
+#include cyberRT_project directories
+include_directories(${cyberRT_project_BINARY_DIR})
+include_directories(${cyberRT_project_SOURCE_DIR})
+
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-include_directories(${cyber_SOURCE_DIR})
-include_directories(${cyber_BINARY_DIR})
+
 add_compile_options(-Og)
 
 add_executable(tcp_echo_client tcp_echo_client.cc)

@@ -10,7 +10,6 @@ add_subdirectory(cyber_monitor)
 #build cyber_recorder
 add_subdirectory(cyber_recorder)
 
-
 install(DIRECTORY cyber_launch DESTINATION ${CMAKE_INSTALL_BINDIR}/cyber/tools)
 install(DIRECTORY cyber_channel DESTINATION ${CMAKE_INSTALL_BINDIR}/cyber/tools)
 #install cyber_tools_auto_complete.bash

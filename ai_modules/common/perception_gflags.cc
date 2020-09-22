@@ -39,12 +39,10 @@ DEFINE_string(work_root, "", "Project work root direcotry.");
 // lidar_point_pillars
 DEFINE_int32(gpu_id, 0, "The id of gpu used for inference.");
 DEFINE_string(pfe_onnx_file,
-              "/apollo/modules/perception/production/data/perception/lidar/"
-              "models/detection/point_pillars/pfe.onnx",
+              "/home/lpj/github/perception_software/ai_modules/lidar_detection/data/point_pillars/pfe.onnx",
               "The path of pillars feature extractor onnx file.");
 DEFINE_string(rpn_onnx_file,
-              "/apollo/modules/perception/production/data/perception/lidar/"
-              "models/detection/point_pillars/rpn.onnx",
+              "/home/lpj/github/perception_software/ai_modules/lidar_detection/data/point_pillars/rpn.onnx",
               "The path of RPN onnx file.");
 DEFINE_double(normalizing_factor, 255,
               "Normalize intensity range to [0, 1] by this factor.");

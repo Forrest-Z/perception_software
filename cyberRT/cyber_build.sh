@@ -44,6 +44,10 @@ elif [ "$1" == 'install' ]; then
     cd build
     make install
     echo "source ${setup_path}" >> ~/.bashrc
+    if [ ! -d "/home/$USER/cyber_data/log" ]; then
+      echo "cyber log not exist, create dir /home/$USER/easy"
+      mkdir -p /home/$USER/cyber_data/log
+    fi
 elif [ "$1" == 'clean' ]; then
     echo "clean"
     rm -rf $build_path
