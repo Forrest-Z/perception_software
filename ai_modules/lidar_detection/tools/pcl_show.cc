@@ -4,7 +4,7 @@ namespace perception {
 namespace lidar {
 
 void typeToPCLCloud(const std::shared_ptr<drivers::PointCloud> &message,
-                    Pointcloud::Ptr &dstCloud) {
+                    PCLPointCloud::Ptr &dstCloud) {
   dstCloud->clear();
   for (int i = 0; i < message->point_size(); ++i) {
     const drivers::PointXYZIT &pt = message->point(i);
@@ -20,7 +20,7 @@ void typeToPCLCloud(const std::shared_ptr<drivers::PointCloud> &message,
     if (pt.z() > 5.0) {
       continue;
     }
-    Point point;
+    PCLPoint point;
     point.x = pt.x();
     point.y = pt.y();
     point.z = pt.z();
@@ -30,11 +30,11 @@ void typeToPCLCloud(const std::shared_ptr<drivers::PointCloud> &message,
 }
 
 void typeToPCLCloud(const base::PointFCloudPtr &cloud,
-                    Pointcloud::Ptr &dstCloud) {
+                    PCLPointCloud::Ptr &dstCloud) {
   dstCloud->clear();
   for (size_t i = 0; i < cloud->size(); i++) {
     const auto &point = cloud->at(i);
-    Point tempPoint;
+    PCLPoint tempPoint;
     tempPoint.x = point.x;
     tempPoint.y = point.y;
     tempPoint.z = point.z;
@@ -44,7 +44,7 @@ void typeToPCLCloud(const base::PointFCloudPtr &cloud,
 }
 
 void pclToAttributePointCloud(
-    const Pointcloud::Ptr &srcCloud,
+    const PCLPointCloud::Ptr &srcCloud,
     base::AttributePointCloud<base::PointF> &dstcloud) {
   dstcloud.clear();
   for (const auto point : *srcCloud) {
@@ -74,27 +74,27 @@ Eigen::Quaternionf getRotation(float angularX, float angularY, float angularZ) {
 }
 
 void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
-                      const Pointcloud::Ptr &srcCloud) {
+                      const PCLPointCloud::Ptr &srcCloud) {
   viewer->removeAllPointClouds();
-  pcl::visualization::PointCloudColorHandlerCustom<Point> colorHandler(
+  pcl::visualization::PointCloudColorHandlerCustom<PCLPoint> colorHandler(
       srcCloud, 0, 100, 255);
-  viewer->addPointCloud<Point>(srcCloud, colorHandler, "srcCloud", 0);
+  viewer->addPointCloud<PCLPoint>(srcCloud, colorHandler, "srcCloud", 0);
   viewer->setPointCloudRenderingProperties(
       pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "srcCloud", 0);
 }
 
 void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
-                      const Pointcloud::Ptr &srcCloud1,
-                      const Pointcloud::Ptr &srcCloud2) {
+                      const PCLPointCloud::Ptr &srcCloud1,
+                      const PCLPointCloud::Ptr &srcCloud2) {
   viewer->removeAllPointClouds();
-  pcl::visualization::PointCloudColorHandlerCustom<Point> colorHandler1(
+  pcl::visualization::PointCloudColorHandlerCustom<PCLPoint> colorHandler1(
       srcCloud1, 0, 100, 255);
-  viewer->addPointCloud<Point>(srcCloud1, colorHandler1, "srcCloud1", 0);
+  viewer->addPointCloud<PCLPoint>(srcCloud1, colorHandler1, "srcCloud1", 0);
   // viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE,
   // 2, "srcCloud1", 0);
-  pcl::visualization::PointCloudColorHandlerCustom<Point> colorHandler2(
+  pcl::visualization::PointCloudColorHandlerCustom<PCLPoint> colorHandler2(
       srcCloud2, 255, 0, 0);
-  viewer->addPointCloud<Point>(srcCloud2, colorHandler2, "srcCloud2", 0);
+  viewer->addPointCloud<PCLPoint>(srcCloud2, colorHandler2, "srcCloud2", 0);
   viewer->setPointCloudRenderingProperties(
       pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "srcCloud2", 0);
 }

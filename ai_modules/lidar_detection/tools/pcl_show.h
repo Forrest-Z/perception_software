@@ -15,26 +15,23 @@
 namespace perception {
 namespace lidar {
 
-typedef pcl::PointXYZI Point;
-typedef pcl::PointCloud<Point> Pointcloud;
-
 void typeToPCLCloud(const std::shared_ptr<drivers::PointCloud>& message, 
-                    Pointcloud::Ptr &dstCloud);
+                    PCLPointCloud::Ptr &dstCloud);
 
 void typeToPCLCloud(const base::PointFCloudPtr &cloud, 
-                    Pointcloud::Ptr &dstCloud);                           
+                    PCLPointCloud::Ptr &dstCloud);                           
 
-void pclToAttributePointCloud(const Pointcloud::Ptr &srcCloud, 
+void pclToAttributePointCloud(const PCLPointCloud::Ptr &srcCloud, 
                               base::AttributePointCloud<base::PointF> &dstcloud);
 
 Eigen::Quaternionf getRotation(float angularX, float angularY, float angularZ);
 
 void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer, 
-                      const Pointcloud::Ptr &srcCloud);
+                      const PCLPointCloud::Ptr &srcCloud);
 
 void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer, 
-                      const Pointcloud::Ptr &srcCloud1,
-                      const Pointcloud::Ptr &srcCloud2);
+                      const PCLPointCloud::Ptr &srcCloud1,
+                      const PCLPointCloud::Ptr &srcCloud2);
 
 void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
                       const std::vector<base::PolygonDType> &polygons);

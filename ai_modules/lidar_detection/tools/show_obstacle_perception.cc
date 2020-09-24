@@ -7,7 +7,7 @@
 #define LIDAR_POINT_CLOUD_CHANNEL "/apollo/sensor/pandar64/PointCloud2"
 #define LIDAR_OBJECT_CHANNEL "/perception/obstacles"
 
-static pcl::PointCloud<perception::lidar::Point>::Ptr frameCloud;
+static perception::lidar::PCLPointCloud::Ptr frameCloud;
 static std::mutex mutexLock;
 static pcl::visualization::PCLVisualizer::Ptr myViewer(new pcl::visualization::PCLVisualizer("3D Viewer"));
 
@@ -72,11 +72,11 @@ int main(int argc, char* argv[]) {
   // create listener node
   auto listener_node = apollo::cyber::CreateNode("show_test");
 
-  frameCloud.reset(new pcl::PointCloud<perception::lidar::Point>());
+  frameCloud.reset(new pcl::PointCloud<perception::lidar::PCLPoint>());
   myViewer->setBackgroundColor(0, 0, 0);
   myViewer->setCameraPosition(0, 0, 0, 0, 0, 0, 0, 0, -1);
-  pcl::visualization::PointCloudColorHandlerCustom<perception::lidar::Point> colorHandler(frameCloud, 0, 100, 255);
-  myViewer->addPointCloud<perception::lidar::Point>(frameCloud, colorHandler, "srcCloud", 0);
+  pcl::visualization::PointCloudColorHandlerCustom<perception::lidar::PCLPoint> colorHandler(frameCloud, 0, 100, 255);
+  myViewer->addPointCloud<perception::lidar::PCLPoint>(frameCloud, colorHandler, "srcCloud", 0);
   myViewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "srcCloud", 0);
   myViewer->addCoordinateSystem(1.0);
   myViewer->initCameraParameters();

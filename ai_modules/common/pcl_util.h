@@ -15,6 +15,8 @@
  *****************************************************************************/
 #pragma once
 
+#define PCL_NO_PRECOMPILE
+
 #include <string>
 
 #include "pcl/filters/voxel_grid.h"
@@ -31,6 +33,42 @@ typedef pcl::PointXYZRGB CPoint;
 typedef pcl::PointCloud<CPoint> CPointCloud;
 typedef pcl::PointCloud<CPoint>::Ptr CPointCloudPtr;
 typedef pcl::PointCloud<CPoint>::ConstPtr CPointCloudConstPtr;
+
+typedef pcl::PointXYZI PCLPoint;
+typedef pcl::PointCloud<PCLPoint> PCLPointCloud;
+
+//cloud point
+struct PointXYZITR
+{
+   PCL_ADD_POINT4D
+   uint8_t intensity;
+   double timestamp;
+   uint16_t ring;                  //< laser ring number
+   EIGEN_MAKE_ALIGNED_OPERATOR_NEW // make sure our new allocators are aligned
+} EIGEN_ALIGN16;
+
+struct PointXYZITRY
+{
+    PCL_ADD_POINT4D;
+    float intensity;
+    double timestamp;
+    uint16_t ring;
+    float yaw;
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+}EIGEN_ALIGN16;
+
+typedef PointXYZITR PPoint;
+typedef pcl::PointCloud<PPoint> RawPointcloud;
+
+struct PointXYZIRL
+{
+  PCL_ADD_POINT4D;
+  float intensity;
+  uint16_t ring;
+  unsigned int index;
+  EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+} EIGEN_ALIGN16;
+
 
 struct PCLPointXYZIT {
   float x;
@@ -132,6 +170,27 @@ inline void DownSampleCloudByVoxelGrid(
 
 }  // namespace lidar
 }  // namespace perception
+
+POINT_CLOUD_REGISTER_POINT_STRUCT(perception::lidar::PointXYZITR,
+                                 (float, x, x)(float, y, y)(float, z, z)
+                                 (uint8_t, intensity, intensity)(double, timestamp, timestamp)(uint16_t, ring, ring))
+
+POINT_CLOUD_REGISTER_POINT_STRUCT(perception::lidar::PointXYZITRY,
+                                   (float, x, x)
+                                   (float, y, y)
+                                   (float, z, z)
+                                   (float, intensity, intensity)
+                                   (double, timestamp, timestamp)
+                                   (uint16_t, ring, ring)
+                                   (float, yaw, yaw))
+
+POINT_CLOUD_REGISTER_POINT_STRUCT(perception::lidar::PointXYZIRL,
+                                  (float, x, x)
+                                  (float, y, y)
+                                  (float, z, z)
+                                  (float, intensity, intensity)
+                                  (uint16_t, ring, ring)
+                                  (unsigned int, index, index))
 
 POINT_CLOUD_REGISTER_POINT_STRUCT(perception::lidar::PCLPointXYZIT,
                                   (float, x, x)(float, y, y)(float, z, z)(

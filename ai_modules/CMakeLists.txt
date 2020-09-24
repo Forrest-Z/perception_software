@@ -34,8 +34,14 @@ add_subdirectory(imgproc_c/testing)
 #build ldws_detector
 add_subdirectory(ldws)
 
+#build lidar_common
+add_subdirectory(lidar_common)
+
 #build lidar_detection
 add_subdirectory(lidar_detection)
+
+#build lidar_ground
+add_subdirectory(lidar_ground)
 
 install(DIRECTORY "${PROJECT_BINARY_DIR}/proto" DESTINATION include ${CMAKE_INSTALL_INCLUDEDIR} FILES_MATCHING PATTERN "*.h")
 

@@ -6,7 +6,15 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 link_directories(${OpenCV_LIBRARIES})
 
 set(PCL_DIR /home/lpj/Software/pcl_1_9/share/pcl-1.9)
-find_package(PCL REQUIRED COMPONENTS common io filters visualization CONFIG)
+find_package(PCL REQUIRED COMPONENTS 
+             common
+             io 
+             kdtree 
+             filters 
+             sample_consensus 
+             segmentation 
+             keypoints 
+             visualization CONFIG)
 message(STATUS "Found PCL ${PCL_VERSION}")
 message(STATUS "${PCL_INCLUDE_DIRS}, ${PCL_LIBRARIES}")
 include_directories(${PCL_INCLUDE_DIRS})

@@ -23,7 +23,7 @@ namespace drivers {
 namespace pandar_sdk {
 
 struct PointXYZIT {
-  PCL_ADD_POINT4D   //添加pcl里xyz
+  PCL_ADD_POINT4D 
   uint8_t intensity;
   double timestamp;
   uint16_t ring;                   ///< laser ring number
