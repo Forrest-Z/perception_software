@@ -45,8 +45,8 @@ add_subdirectory(cyber/mainboard)
 add_subdirectory(cyber/io/example)
 
 #build examples
-add_subdirectory(cyber/examples)
 add_subdirectory(cyber/examples/proto)
+add_subdirectory(cyber/examples)
 
 #build python wrapper
 add_subdirectory(cyber/python)
