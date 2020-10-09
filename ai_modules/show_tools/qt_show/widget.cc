@@ -1,4 +1,4 @@
-#include "modules/perception/camera/tools/qt_show/widget.h"
+#include "show_tools/qt_show/widget.h"
 #include <QPainter>
 #include <QMessageBox>
 #include <strstream>
@@ -51,7 +51,7 @@ void Widget::paintEvent(QPaintEvent *e){
     this->resize(temp.width(), temp.height());
 }
 
-void Widget::imageReaderCallback(const std::shared_ptr<apollo::drivers::Image>& imgData) {
+void Widget::imageReaderCallback(const std::shared_ptr<drivers::Image>& imgData) {
   reader_mutex_.lock();
 //   std::size_t imgSize = imgData->width() * imgData->height() * 3;
 //   std::cout << "image size:" << imgSize << std::endl;
@@ -61,13 +61,13 @@ void Widget::imageReaderCallback(const std::shared_ptr<apollo::drivers::Image>& 
   reader_mutex_.unlock();
 }
 
-void Widget::objectReaderCallback(const std::shared_ptr<apollo::perception::PerceptionObstacles>& message){
+void Widget::objectReaderCallback(const std::shared_ptr<perception::PerceptionObstacles>& message){
     reader_mutex_.lock();
     const int count = message->perception_obstacle_size();
     rectList.clear();
     strList.clear();
     for(int index = 0; index < count; index++){
-        apollo::perception::PerceptionObstacle* object = message->mutable_perception_obstacle(index);
+        perception::PerceptionObstacle* object = message->mutable_perception_obstacle(index);
         Eigen::Vector3d center;
         Eigen::Vector3d velocity;
         Eigen::Vector3d direction(static_cast<float>(std::cos(object->theta())),
@@ -112,12 +112,12 @@ void Widget::objectReaderCallback(const std::shared_ptr<apollo::perception::Perc
 void Widget::init(){
     bool ret1 = false;
     bool ret2 = false;
-    image_reader_ = new CyberChannReader<apollo::drivers::Image>();
-    object_reader_ = new CyberChannReader<apollo::perception::PerceptionObstacles>();
-    auto videoCallback =[this](const std::shared_ptr<apollo::drivers::Image>& pdata) {
+    image_reader_ = new CyberChannReader<drivers::Image>();
+    object_reader_ = new CyberChannReader<perception::PerceptionObstacles>();
+    auto videoCallback =[this](const std::shared_ptr<drivers::Image>& pdata) {
                     this->imageReaderCallback(pdata);
                 };
-    auto objectCallback =[this](const std::shared_ptr<apollo::perception::PerceptionObstacles>& pdata) {
+    auto objectCallback =[this](const std::shared_ptr<perception::PerceptionObstacles>& pdata) {
                     this->objectReaderCallback(pdata);
                 };
     ret1 = image_reader_->InstallCallbackAndOpen(videoCallback, CAMERA_IMAGE_CHANNEL, "Visualizer-image");

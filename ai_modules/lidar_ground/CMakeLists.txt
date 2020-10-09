@@ -8,7 +8,7 @@ add_subdirectory(ground)
 
 #collect tools files
 file(GLOB TOOLS_SRCS
-    "${ai_algorithm_SOURCE_DIR}/lidar_ground/tools/pcl_viewer.cc"
+    "${ai_algorithm_SOURCE_DIR}/show_tools/pcl_show/pcl_viewer.cc"
 )
 
 add_executable(lidar_ground_segement tools/lidar_ground_segement.cc ${TOOLS_SRCS})

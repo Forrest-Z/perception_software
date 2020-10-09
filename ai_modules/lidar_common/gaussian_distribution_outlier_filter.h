@@ -1,7 +1,7 @@
 #ifndef GAUSSIAN_DISTRIBUTION_OUTLIER_FILTER_H
 #define GAUSSIAN_DISTRIBUTION_OUTLIER_FILTER_H
 
-#include "common/pcl_util.h"
+#include "common/lidar_processing/pcl_util.h"
 
 namespace perception {
 namespace lidar {

@@ -5,22 +5,31 @@ namespace perception {
 namespace lidar {
 
 RBNNCluster::RBNNCluster(){
-
+	// if distance >= 120m, ingnore
+    seg_distance_ = {17, 38, 70, 120};
+    cluster_radius_ = {0.5f, 1.0f, 3.0f, 5.0f};
 }
 
 RBNNCluster::~RBNNCluster(){
 
 }
 
-void RBNNCluster::clustering(const PCLPointCloud::Ptr &srcCloudPoints, const double radius, 
-                             std::vector<int> &result){
-    std::vector<int> cluster_indices;
-    rbnn(srcCloudPoints, radius)
- //delete the clusters that are too small
-
+void RBNNCluster::clustering(const PCLPointCloud::Ptr &srcPointcloud, std::vector<std::shared_ptr<base::Object>> &objects){
+	std::vector<PCLPointCloud::Ptr> segmentPointCloudArray;
+    objects.clear();
+    if(srcPointcloud->size() <= 0)
+        return;
+	clusterByDistance(srcPointcloud, seg_distance_, segmentPointCloudArray);
+    for (size_t i = 0; i < segmentPointCloudArray.size(); i++){
+        if(segmentPointCloudArray[i]->size() > 0){
+			std::vector<int> cluster_indices;
+			cluster_indices = rbnn(segmentPointCloudArray[i], cluster_radius_[i]);
+			computeCentroid(srcPointcloud, cluster_indices, 9, 5000, &objects);
+        }
+    }
 }
 
-std::vector<int> RBNNCluster::rbnn(const PCLPointCloud::Ptr &srcCloudPoints, const double radius){
+std::vector<int> RBNNCluster::rbnn(const PCLPointCloud::Ptr &srcCloudPoints, const float radius){
     std::vector<int> cluster_indices = std::vector<int>(srcCloudPoints->points.size(), -1);
 	pcl::KdTreeFLANN<PCLPoint> kdtree;
 	kdtree.setInputCloud(srcCloudPoints);
@@ -32,7 +41,7 @@ std::vector<int> RBNNCluster::rbnn(const PCLPointCloud::Ptr &srcCloudPoints, con
 		// 2. find nearest neigbours for current point
 		std::vector<int> pointIdxRadiusSearch;
 		std::vector<float> pointRadiusSquaredDistance;
-		if (kdtree.radiusSearch(cloud->points[i], radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) > 0){
+		if (kdtree.radiusSearch(srcCloudPoints->points[i], static_cast<float>(radius), pointIdxRadiusSearch, pointRadiusSquaredDistance) > 0){
 			// 3. merge or assign new clusters
 			for (size_t j = 0; j < pointIdxRadiusSearch.size(); ++j) {
 				int oc = cluster_indices[i]; // original point's cluster
@@ -65,34 +74,13 @@ std::vector<int> RBNNCluster::rbnn(const PCLPointCloud::Ptr &srcCloudPoints, con
 	}
 	return cluster_indices;
 }
+
 void RBNNCluster::mergeClusters(std::vector<int>& cluster_indices, int idx1, int idx2){
     for (size_t i = 0; i < cluster_indices.size(); i++) {
 		if (cluster_indices[i] == idx1) {
 			cluster_indices[i] = idx2;
 		}
 	}
-}
-int RBNNCluster::mostFrequentValue(const std::vector<int> &values){
-    std::map<int, int> histcounts;
-	for (size_t i = 0; i < values.size(); i++) {
-		if (histcounts.find(values[i]) == histcounts.end()) {
-			histcounts[values[i]] = 1;
-		}
-		else {
-			histcounts[values[i]] += 1;
-		}
-	}
-
-    int max = 0, maxi;
-	std::vector<std::pair<int, int>> tr(histcounts.begin(), histcounts.end());
-	for (auto& val : tr) {
-		cout << val.first << " : " << val.second << endl;
-		if (val.second > max) {
-			max = val.second;
-			maxi = val.first;
-		}
-	}
-	return maxi;
 }
 
 }  // namespace lidar

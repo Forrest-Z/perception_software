@@ -4,17 +4,18 @@ project(lidar_segment)
 include_directories(${ai_algorithm_BINARY_DIR})
 include_directories(${ai_algorithm_SOURCE_DIR})
 
-add_subdirectory(ground)
+add_subdirectory(clustering)
 
 #collect tools files
 file(GLOB TOOLS_SRCS
-    "${ai_algorithm_SOURCE_DIR}/lidar_ground/tools/pcl_viewer.cc"
+    "${ai_algorithm_SOURCE_DIR}/show_tools/pcl_show/pcl_show.cc"
 )
 
-add_executable(lidar_ground_segement tools/lidar_ground_segement.cc ${TOOLS_SRCS})
-target_link_libraries(lidar_ground_segement
-    lidar_common
+add_executable(lidar_clustering_object tools/lidar_clustering_object.cc ${TOOLS_SRCS})
+target_link_libraries(lidar_clustering_object
+    ai_proto
     lidar_ground
+    lidar_clustering
     vtkCommonCore
     vtkCommonMath
     vtkCommonSystem

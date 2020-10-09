@@ -17,5 +17,19 @@ void pclToAttributePointCloud(
   }
 }
 
+void typeToPCLCloud(const base::PointFCloudPtr &cloud,
+                    PCLPointCloud::Ptr &dstCloud) {
+  dstCloud->clear();
+  for (size_t i = 0; i < cloud->size(); i++) {
+    const auto &point = cloud->at(i);
+    PCLPoint tempPoint;
+    tempPoint.x = point.x;
+    tempPoint.y = point.y;
+    tempPoint.z = point.z;
+    tempPoint.intensity = static_cast<float>(point.intensity);
+    dstCloud->push_back(tempPoint);
+  }
+}
+
 }  // namespace lidar
 }  // namespace perception

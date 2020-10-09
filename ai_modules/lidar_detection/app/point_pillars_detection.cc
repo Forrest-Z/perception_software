@@ -25,7 +25,7 @@
 
 #include "base/object_pool_types.h"
 #include "common/perception_gflags.h"
-#include "common/lidar_timer.h"
+#include "common/lidar_processing/lidar_timer.h"
 #include "lidar_detection/lidar_point_pillars/params.h"
 
 namespace perception {

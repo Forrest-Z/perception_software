@@ -1,4 +1,4 @@
-#include "modules/perception/camera/tools/qt_show/widget.h"
+#include "show_tools/qt_show/widget.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

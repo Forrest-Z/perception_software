@@ -9,6 +9,7 @@ message(STATUS "ai_algorithm_SOURCE_DIR: ${ai_algorithm_SOURCE_DIR}")
 file(GLOB COMMON_SRCS
     "${ai_algorithm_SOURCE_DIR}/base/*.cc"
     "${ai_algorithm_SOURCE_DIR}/common/*.cc"
+    "${ai_algorithm_SOURCE_DIR}/common/lidar_processing/*.cc"
 	)
 
 file(GLOB APP_SRCS

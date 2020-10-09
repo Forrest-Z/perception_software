@@ -13,80 +13,30 @@
 namespace perception {
 namespace lidar {
 
-EuclideanCluster::EuclideanCluster()
-{
-    seg_distance_ = {17, 38, 70};
+EuclideanCluster::EuclideanCluster(){
+    // if distance >= 120m, ingnore
+    seg_distance_ = {17, 38, 70, 120};
     cluster_distance_ = {0.4f, 0.7f, 1.0f, 1.5f};
 }
 
-EuclideanCluster::~EuclideanCluster()
-{
+EuclideanCluster::~EuclideanCluster(){
 
 }
 
-void EuclideanCluster::clustering(const PCLPointCloud::Ptr &srcPointcloud, std::vector<std::shared_ptr<base::Object>> &objects)
-{
+void EuclideanCluster::clustering(const PCLPointCloud::Ptr &srcPointcloud, std::vector<std::shared_ptr<base::Object>> &objects){
     PCLPointCloud::Ptr inputPointCloud(new PCLPointCloud);
+    std::vector<PCLPointCloud::Ptr> segmentPointCloudArray;
     objects.clear();
     if(srcPointcloud->size() <= 0)
         return;
     //differenceNormalsSegmentation(srcPointcloud, inputPointCloud);
     //pcl::io::savePCDFileASCII("./temp.pcd", *inputPointCloud);
-    clusterByDistance(srcPointcloud, objects);
-}
-
-void EuclideanCluster::clusterByDistance(const PCLPointCloud::Ptr &srcPointcloud, std::vector<std::shared_ptr<base::Object>>* objects)
-{
-    //cluster the pointcloud according to the distance of the points using different thresholds (not only one for the entire pc)
-    //in this way, the points farther in the pc will also be clustered
-    std::vector<PCLPointCloud::Ptr> segmentPointCloudArray(4);
-    objects->clear();
-
-    for (size_t i = 0; i < segmentPointCloudArray.size(); i++)
-    {
-        PCLPointCloud::Ptr temp(new PCLPointCloud);
-        temp->header = srcPointcloud->header;
-        segmentPointCloudArray[i] = temp;
-    }
-
-    for (size_t i = 0; i < srcPointcloud->points.size(); i++)
-    {
-        PCLPoint current_point;
-        current_point.x = srcPointcloud->points[i].x;
-        current_point.y = srcPointcloud->points[i].y;
-        current_point.z = srcPointcloud->points[i].z;
-
-        float origin_distance = std::sqrt(std::pow(current_point.x, 2.0f) + std::pow(current_point.y, 2.0f));
-
-        // if distance > 120m, ingnore
-        if (origin_distance >= 120)
-        {
-            continue;
-        }
-
-        if (origin_distance < seg_distance_[0])
-        {
-            segmentPointCloudArray[0]->points.push_back(current_point);
-        }
-        else if (origin_distance < seg_distance_[1])
-        {
-            segmentPointCloudArray[1]->points.push_back(current_point);
-        }
-        else if (origin_distance < seg_distance_[2])
-        {
-            segmentPointCloudArray[2]->points.push_back(current_point);
-        }
-        else
-        {
-            segmentPointCloudArray[3]->points.push_back(current_point);
-        }
-    }
-
+    clusterByDistance(srcPointcloud, seg_distance_, segmentPointCloudArray);
     for (size_t i = 0; i < segmentPointCloudArray.size(); i++)
     {
         if(segmentPointCloudArray[i]->size() > 0)
         {
-            clusteringToSegment(segmentPointCloudArray[i], cluster_distance_[i], objects);
+            clusteringToSegment(segmentPointCloudArray[i], cluster_distance_[i], &objects);
         }
     }
 }
@@ -94,10 +44,10 @@ void EuclideanCluster::clusterByDistance(const PCLPointCloud::Ptr &srcPointcloud
 void EuclideanCluster::clusteringToSegment(const PCLPointCloud::Ptr &srcPointCloud, const float maxClusterDistance,
                                            std::vector<std::shared_ptr<base::Object>>* objects)
 {
-    pcl::search::KdTree<PCLPoint>::Ptr tree(new pcl::search::KdTree<Point>);
+    pcl::search::KdTree<PCLPoint>::Ptr tree(new pcl::search::KdTree<PCLPoint>);
     std::vector<pcl::PointIndices> localIndices;
     //create 2d cloud
-    PCLPointCloud::Ptr cloud2D(new Pointcloud);
+    PCLPointCloud::Ptr cloud2D(new PCLPointCloud);
     pcl::copyPointCloud(*srcPointCloud, *cloud2D);
     for (size_t i = 0; i < cloud2D->points.size(); i++)
     {
@@ -119,34 +69,6 @@ void EuclideanCluster::clusteringToSegment(const PCLPointCloud::Ptr &srcPointClo
     computeCentroid(srcPointCloud, localIndices, objects);
 }
 
-void EuclideanCluster::computeCentroid(const PCLPointCloud::Ptr &srcPointCloud,
-                     const std::vector<pcl::PointIndices> &localIndices,
-                     std::vector<std::shared_ptr<base::Object>>* objects)
-{
-    for (size_t i = 0; i < localIndices.size(); i++)
-    {
-        base::ObjectPtr object(new base::Object);
-        PCLPointCloud::Ptr tempCloud(new PCLPointCloud);
-        double tempX = 0;
-        double tempY = 0;
-        double tempZ = 0;
-        size_t count = localIndices[i].indices.size();
-        tempCloud->header = srcPointCloud->header;
-        for (auto iter = localIndices[i].indices.begin(); iter != localIndices[i].indices.end(); ++iter)
-        {
-            tempX += srcPointCloud->points[*iter].x;
-            tempY += srcPointCloud->points[*iter].y;
-            tempZ += srcPointCloud->points[*iter].z;
-            tempCloud->push_back(srcPointCloud->points[*iter]);
-        }
-        object->anchor_point[0] = tempX / static_cast<double>(count);
-        object->anchor_point[1] = tempY / static_cast<double>(count);
-        object->anchor_point[2] = tempZ / static_cast<double>(count);
-        object->lidar_supplement.num_points_in_roi = count;
-        pclToAttributePointCloud(tempCloud, object->lidar_supplement.cloud);
-        objects->push_back(object);
-    }
-}
 
 void EuclideanCluster::differenceNormalsSegmentation(const PCLPointCloud::Ptr &srcPointcloud, PCLPointCloud::Ptr &result)
 {
@@ -184,7 +106,7 @@ void EuclideanCluster::differenceNormalsSegmentation(const PCLPointCloud::Ptr &s
     normal_estimation.compute(*normals_large_scale);
 
     pcl::PointCloud<pcl::PointNormal>::Ptr diffnormals_cloud(new pcl::PointCloud<pcl::PointNormal>);
-    pcl::copyPointCloud<Point, pcl::PointNormal>(*srcPointcloud, *diffnormals_cloud);
+    pcl::copyPointCloud<PCLPoint, pcl::PointNormal>(*srcPointcloud, *diffnormals_cloud);
 
     // Create DoN operator
     pcl::DifferenceOfNormalsEstimation<PCLPoint, pcl::PointNormal, pcl::PointNormal> diffnormals_estimator;

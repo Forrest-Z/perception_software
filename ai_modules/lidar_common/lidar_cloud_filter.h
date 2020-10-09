@@ -1,7 +1,7 @@
 #ifndef LIDAR_CLOUD_FILTER_H_
 #define LIDAR_CLOUD_FILTER_H_
 
-#include "common/pcl_util.h"
+#include "common/lidar_processing/pcl_util.h"
 #include <pcl/filters/statistical_outlier_removal.h>
 #include <pcl/filters/radius_outlier_removal.h>
 #include <pcl/filters/crop_box.h>

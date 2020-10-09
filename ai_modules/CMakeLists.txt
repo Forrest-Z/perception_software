@@ -43,6 +43,12 @@ add_subdirectory(lidar_detection)
 #build lidar_ground
 add_subdirectory(lidar_ground)
 
+#build lidar_segment
+add_subdirectory(lidar_segment)
+
+#build show_tools
+add_subdirectory(show_tools)
+
 install(DIRECTORY "${PROJECT_BINARY_DIR}/proto" DESTINATION include ${CMAKE_INSTALL_INCLUDEDIR} FILES_MATCHING PATTERN "*.h")
 
 

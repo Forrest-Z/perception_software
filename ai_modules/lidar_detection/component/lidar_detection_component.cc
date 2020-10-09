@@ -17,7 +17,7 @@
 
 #include "cyber/time/clock.h"
 #include "base/object_pool_types.h"
-#include "common/lidar_error_code.h"
+#include "common/lidar_processing/lidar_error_code.h"
 
 using ::apollo::cyber::Clock;
 

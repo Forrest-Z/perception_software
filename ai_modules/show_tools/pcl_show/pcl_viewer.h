@@ -1,7 +1,7 @@
 #ifndef PCL_VIEWER_H
 #define PCL_VIEWER_H
 
-#include "common/pcl_util.h"
+#include "common/lidar_processing/pcl_util.h"
 #include <pcl/visualization/cloud_viewer.h>
 
 namespace perception {

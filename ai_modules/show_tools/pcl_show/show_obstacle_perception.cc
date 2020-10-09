@@ -2,7 +2,7 @@
 #include <thread>
 
 #include "cyber/cyber.h"
-#include "lidar_detection/tools/pcl_show.h"
+#include "show_tools/pcl_show/pcl_show.h"
 
 #define LIDAR_POINT_CLOUD_CHANNEL "/apollo/sensor/pandar64/PointCloud2"
 #define LIDAR_OBJECT_CHANNEL "/perception/obstacles"

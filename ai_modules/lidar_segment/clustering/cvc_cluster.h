@@ -4,16 +4,14 @@
 #ifndef CVC_CLUSTER_H_
 #define CVC_CLUSTER_H_
 
-#include <vector>
 #include <unordered_map>
-#include <map>
 
-#include "lidar_common/lidar_cloud_filter.h"
+#include "lidar_segment/clustering/abstract_cluster.h"
 
 namespace perception {
 namespace lidar {
 
-class CVCCluster
+class CVCCluster : public AbstractCluster
 {
 public:
 
@@ -32,19 +30,18 @@ public:
     CVCCluster();
     ~CVCCluster();
 
-    void clustering(const PCLPointCloud::Ptr &srcCloudPoints, std::vector<int> &result);
+    void clustering(const PCLPointCloud::Ptr &srcCloudPoints, std::vector<std::shared_ptr<base::Object>> &objects);
 
 private:
     void calculateAPR(const PCLPointCloud::Ptr &srcCloudPoints, std::vector<PointAPR>& vapr);
     void buildHashTable(const std::vector<PointAPR>& vapr, std::unordered_map<int, Voxel> &map_out);
     std::vector<int>  CVC(std::unordered_map<int, Voxel> &map_in, const std::vector<PointAPR>& vapr);
-    bool mostFrequentValue(std::vector<int> values, std::vector<int> &cluster_index);
 
     float polarAngleCalculate(const float x, const float y);
+    void findNeighbors(const int polar, const int range, const int azimuth, std::vector<int>& neighborindex);
+    void mergeClusters(std::vector<int>& cluster_indices, int idx1, int idx2);
     
 private:
-
-    LidarCloudFilter<PCLPoint> cloudFilter;
 
 };
 

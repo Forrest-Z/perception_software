@@ -24,7 +24,7 @@
 #include "pcl/point_types.h"
 
 #include "base/point_cloud.h"
-#include "common/lidar_log.h"
+#include "common/lidar_processing/lidar_log.h"
 
 namespace perception {
 namespace lidar {

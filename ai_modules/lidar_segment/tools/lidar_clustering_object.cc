@@ -1,24 +1,29 @@
 #include "lidar_ground/ground/lidar_ground_extractor.h"
 #include "lidar_ground/ground/lidar_plane_fit_ground.h"
 #include "lidar_ground/ground/lidar_ransac_fit_ground.h"
-#include "show_tools/pcl_show/pcl_viewer.h"
+#include "lidar_segment/clustering/euclidean_cluster.h"
+#include "lidar_common/merge_object.h"
+#include "lidar_common/object_builder.h"
+#include "show_tools/pcl_show/pcl_show.h"
+
+#define MERGE_THRESHOLD (2.8)
 
 using namespace perception::lidar;
 
-void printCloud(const PCLPointCloud &srcCloud){
-    for (const auto &point : srcCloud)
-    {
-        std::cout << "intensity:" << point.intensity << std::endl;
-    }
-}
-
 int main(int argc, char* argv[]) {
 	const std::string pcd_path = "/home/lpj/github/perception_software/ai_modules/test_data/cloud_120.pcd";
-	PCLViewer pclViewer;
 	pcl::visualization::PCLVisualizer::Ptr myViewer(new pcl::visualization::PCLVisualizer ("3D Viewer"));
+
     LidarGroundExtractor groundExtractor;
     LidarPlaneFitGround planeFitGround;
     LidarRANSACFitGround ransac_ground;
+
+    EuclideanCluster cluster;
+    MergeObject mergeObject;
+    ObjectBuilder builder;
+    std::vector<std::shared_ptr<perception::base::Object>> clusterResult;
+    std::vector<std::shared_ptr<perception::base::Object>> mergeResult;
+
 	PCLPointCloud::Ptr cloud(new PCLPointCloud);
     PCLPointCloud::Ptr noGroundCloud(new PCLPointCloud);
 	pcl::PCDReader reader;
@@ -37,11 +42,20 @@ int main(int argc, char* argv[]) {
     myViewer->resetCamera();
 
 	//groundExtractor.filteringGround(cloud, noGroundCloud);
-    //planeFitGround.filteringGround(cloud, noGroundCloud);
-    ransac_ground.filteringGround(cloud, noGroundCloud);
+    planeFitGround.filteringGround(cloud, noGroundCloud);
+    //ransac_ground.filteringGround(cloud, noGroundCloud);
     //ransac_ground.removeFloor(cloud, 1, noGroundCloud);
+
+    cluster.clustering(noGroundCloud, clusterResult);
+    mergeObject.mergeAll(clusterResult, MERGE_THRESHOLD, mergeResult);
+
+    ObjectBuilderOptions builder_options;
+    if (!builder.Build(builder_options, 0.0, mergeResult)) {
+      return -1;
+    }
 	
-	pclViewer.updateViewerData(myViewer, *cloud, *noGroundCloud);
+	updateViewerData(myViewer, cloud, noGroundCloud);
+    updateViewerData(myViewer, mergeResult);
 	while(!myViewer->wasStopped())
   	{
       myViewer->spinOnce(10);
