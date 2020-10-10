@@ -129,8 +129,7 @@ void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
     boxQ = getRotation(0, 0, object->theta);
     center[0] = static_cast<float>(object->center[0]);
     center[1] = static_cast<float>(object->center[1]);
-    center[2] = static_cast<float>(object->center[2] + +object->size[2] / 2.0);
-    center[2] = -2.0;
+    center[2] = static_cast<float>(object->center[2] + object->size[2] / 2.0);
 
     velocity[0] = static_cast<float>(object->velocity[0]);
     velocity[1] = static_cast<float>(object->velocity[1]);
@@ -205,6 +204,8 @@ void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
                       textidString.str());
     viewer->addCube(center, boxQ, object->size[0], object->size[1],
                     object->size[2], idString.str());
+    viewer->setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_REPRESENTATION, \
+                                        pcl::visualization::PCL_VISUALIZER_REPRESENTATION_WIREFRAME, idString.str());
     viewer->setShapeRenderingProperties(
         pcl::visualization::PCL_VISUALIZER_COLOR, red, green, blue,
         idString.str());

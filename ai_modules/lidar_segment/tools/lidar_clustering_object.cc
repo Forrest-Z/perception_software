@@ -2,6 +2,8 @@
 #include "lidar_ground/ground/lidar_plane_fit_ground.h"
 #include "lidar_ground/ground/lidar_ransac_fit_ground.h"
 #include "lidar_segment/clustering/euclidean_cluster.h"
+#include "lidar_segment/clustering/rbnn_cluster.h"
+#include "lidar_segment/clustering/cvc_cluster.h"
 #include "lidar_common/merge_object.h"
 #include "lidar_common/object_builder.h"
 #include "show_tools/pcl_show/pcl_show.h"
@@ -18,7 +20,9 @@ int main(int argc, char* argv[]) {
     LidarPlaneFitGround planeFitGround;
     LidarRANSACFitGround ransac_ground;
 
-    EuclideanCluster cluster;
+    //EuclideanCluster cluster;
+    //RBNNCluster cluster;
+    CVCCluster cluster;
     MergeObject mergeObject;
     ObjectBuilder builder;
     std::vector<std::shared_ptr<perception::base::Object>> clusterResult;

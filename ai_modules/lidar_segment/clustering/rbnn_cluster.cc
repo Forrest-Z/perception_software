@@ -24,7 +24,7 @@ void RBNNCluster::clustering(const PCLPointCloud::Ptr &srcPointcloud, std::vecto
         if(segmentPointCloudArray[i]->size() > 0){
 			std::vector<int> cluster_indices;
 			cluster_indices = rbnn(segmentPointCloudArray[i], cluster_radius_[i]);
-			computeCentroid(srcPointcloud, cluster_indices, 9, 5000, &objects);
+			computeCentroid(segmentPointCloudArray[i], cluster_indices, 9, 5000, &objects);
         }
     }
 }
@@ -32,8 +32,8 @@ void RBNNCluster::clustering(const PCLPointCloud::Ptr &srcPointcloud, std::vecto
 std::vector<int> RBNNCluster::rbnn(const PCLPointCloud::Ptr &srcCloudPoints, const float radius){
     std::vector<int> cluster_indices = std::vector<int>(srcCloudPoints->points.size(), -1);
 	pcl::KdTreeFLANN<PCLPoint> kdtree;
-	kdtree.setInputCloud(srcCloudPoints);
 	int current_cluster = 0;
+	kdtree.setInputCloud(srcCloudPoints);
 	for (size_t i = 0; i < srcCloudPoints->points.size(); i++) {
 		// 1. skip this point if it's already within a cluster
 		if (cluster_indices[i] != -1)
