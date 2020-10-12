@@ -45,7 +45,7 @@ elif [ "$1" == 'install' ]; then
     make install
     echo "source ${setup_path}" >> ~/.bashrc
     if [ ! -d "/home/$USER/cyber_data/log" ]; then
-      echo "cyber log not exist, create dir /home/$USER/easy"
+      echo "cyber log not exist, create dir /home/$USER/cyber_data/log"
       mkdir -p /home/$USER/cyber_data/log
     fi
 elif [ "$1" == 'clean' ]; then
