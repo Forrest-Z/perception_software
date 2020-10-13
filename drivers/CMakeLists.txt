@@ -27,6 +27,9 @@ add_subdirectory(proto)
 #build pandar
 add_subdirectory(lidar/pandar)
 
+#build velodyne
+add_subdirectory(lidar/velodyne)
+
 #build pandar
 add_subdirectory(camera)
 

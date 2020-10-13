@@ -1,0 +1,36 @@
+# Define all coms in DAG streaming.
+
+##################################################
+#                   drivers                      #
+##################################################
+
+module_config {
+    module_library : "/home/lpj/github/perception_software/drivers/build/libvelodyne_driver_component.so"
+
+    components {
+      class_name : "VelodyneDriverComponent"
+      config {
+        name : "velodyne_16"
+        config_file_path : "/home/lpj/github/perception_software/drivers/lidar/velodyne/conf/velodyne16_conf.pb.txt"
+      }
+    }
+}
+
+##################################################
+#                   convert                      #
+##################################################
+
+module_config {
+    module_library : "/home/lpj/github/perception_software/drivers/build/libvelodyne_convert_component.so"
+
+    components {
+      class_name : "VelodyneConvertComponent"
+      config {
+        name : "velodyne_16_convert"
+        config_file_path : "/home/lpj/github/perception_software/drivers/lidar/velodyne/conf/velodyne16_conf.pb.txt"
+        readers {
+          channel: "/apollo/sensor/lidar16/front/center/Scan"
+        }
+      }
+    }
+}

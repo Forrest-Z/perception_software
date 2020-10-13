@@ -1,13 +1,8 @@
-project(pandar)
+project(velodyne_driver_component)
 
 #include drivers directories
 include_directories(${drivers_BINARY_DIR})
 include_directories(${drivers_SOURCE_DIR})
-
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
-
-#build pandar
-add_subdirectory(pandar_sdk)
 
 #collect source files
 file(GLOB COMMON_SRCS
@@ -16,14 +11,19 @@ file(GLOB COMMON_SRCS
     "${drivers_SOURCE_DIR}/common/util/*.cc"
 	)
 
+#collect source files
+file(GLOB VELODYNE_SRCS 
+    "${PROJECT_SOURCE_DIR}/*.cc"
+)
+
 #build pandar_sdk library
-add_library(pandarsdk_driver_component SHARED onboard/pandarsdk_driver_component.cc ${COMMON_SRCS})
-target_link_libraries(pandarsdk_driver_component 
-    pandar_sdk
+add_library(velodyne_driver_component SHARED ${VELODYNE_SRCS} ${COMMON_SRCS})
+target_link_libraries(velodyne_driver_component 
     drivers_proto
     cyber 
     cyber_proto
     gflags
+	pcap
 )
 
-install(FILES "${drivers_BINARY_DIR}/libpandarsdk_driver_component.so" DESTINATION lib ${CMAKE_INSTALL_LIBDIR})
+install(FILES "${drivers_BINARY_DIR}/libvelodyne_driver_component.so" DESTINATION lib ${CMAKE_INSTALL_LIBDIR})
