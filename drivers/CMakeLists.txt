@@ -30,7 +30,10 @@ add_subdirectory(lidar/pandar)
 #build velodyne
 add_subdirectory(lidar/velodyne)
 
-#build pandar
+#build robosense
+add_subdirectory(lidar/robosense)
+
+#build camera
 add_subdirectory(camera)
 
 #build visualizer

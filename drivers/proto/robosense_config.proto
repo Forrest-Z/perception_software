@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package drivers.robosense.config;
+
+message RobosenseConfig {
+  optional string frame_id = 1;
+  optional string device_ip = 2;
+  optional int32 msop_port = 3;
+  optional int32 difop_port = 4;
+  optional string lidar_type = 5;
+  optional double max_range = 6;
+  optional double min_range = 7;
+  optional double max_angle = 8;
+  optional double min_angle = 9;
+  optional string calibration_file = 10;
+  optional string output_channel_name = 11;
+}
+

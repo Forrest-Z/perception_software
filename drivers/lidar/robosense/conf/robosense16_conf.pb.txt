@@ -1,0 +1,9 @@
+frame_id: "lidar16"
+device_ip: "192.168.1.202"
+msop_port: 6670
+difop_port: 7790
+lidar_type: "RS16"
+max_range: 40.0
+min_range: 0.5
+calibration_file: ""
+output_channel_name: "/apollo/sensor/lidar16/PointCloud2"

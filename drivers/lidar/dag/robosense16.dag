@@ -1,0 +1,12 @@
+# Define all coms in DAG streaming.
+module_config {
+    module_library : "/home/lpj/github/perception_software/drivers/build/librobosense_driver_component.so"
+
+    components {
+      class_name : "RobosenseDriverComponent"
+      config {
+        name : "robosense_driver"
+        config_file_path : "/home/lpj/github/perception_software/drivers/lidar/robosense/conf/robosense16_conf.pb.txt"
+      }
+    }
+}
