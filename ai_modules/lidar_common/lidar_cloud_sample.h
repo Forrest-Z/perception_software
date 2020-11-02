@@ -55,8 +55,9 @@ void LidarCloudSample<PointType>::uniformSamplingPointcloud(const typename pcl::
     pcl::UniformSampling<PointType> filter;
     filter.setInputCloud(srcCloudPoint);
     filter.setRadiusSearch(radius);
-    filter.compute(keypointIndices);
-    pcl::copyPointCloud(*srcCloudPoint, keypointIndices.points, *result);
+    //filter.compute(keypointIndices);
+    //pcl::copyPointCloud(*srcCloudPoint, keypointIndices.points, *result);
+    filter.filter(*result);
     result->header = srcCloudPoint->header;
 }
 
