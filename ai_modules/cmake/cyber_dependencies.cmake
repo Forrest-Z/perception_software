@@ -25,6 +25,9 @@ link_directories(${CYBER_DIR}/third_party/gflags/lib)
 include_directories(${CYBER_DIR}/third_party/fastrtps/include)
 link_directories(${CYBER_DIR}/third_party/fastrtps/lib)
 
+include_directories(${CYBER_DIR}/third_party/gtest/include)
+link_directories(${CYBER_DIR}/third_party/gtest/lib)
+
 #cyber
 include_directories(${CYBER_DIR}/include)
 link_directories(${CYBER_DIR}/lib)

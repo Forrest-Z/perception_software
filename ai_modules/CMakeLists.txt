@@ -34,6 +34,9 @@ add_subdirectory(imgproc_c/testing)
 #build ldws_detector
 add_subdirectory(ldws)
 
+#build image_bgs
+add_subdirectory(image_bgs)
+
 #build lidar_common
 add_subdirectory(lidar_common)
 
@@ -51,6 +54,9 @@ add_subdirectory(lidar_tracking)
 
 #build show_tools
 add_subdirectory(show_tools)
+
+#build utility
+add_subdirectory(utility)
 
 install(DIRECTORY "${PROJECT_BINARY_DIR}/proto" DESTINATION include ${CMAKE_INSTALL_INCLUDEDIR} FILES_MATCHING PATTERN "*.h")
 

@@ -14,12 +14,11 @@
  * limitations under the License.
  *****************************************************************************/
 
-#include "modules/perception/lib/thread/thread.h"
+#include "utility/thread/thread.h"
 
 #include <thread>
 #include "gtest/gtest.h"
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -73,4 +72,3 @@ TEST(TestThread, Test) {
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo

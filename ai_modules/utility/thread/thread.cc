@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *****************************************************************************/
-#include "modules/perception/lib/thread/thread.h"
+#include "utility/thread/thread.h"
 
 #include <csignal>
 
 #include "cyber/common/log.h"
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -68,4 +67,3 @@ bool Thread::IsAlive() {
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo

@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *****************************************************************************/
-#include "modules/perception/lib/thread/thread_worker.h"
+#include "utility/thread/thread_worker.h"
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -79,4 +78,3 @@ void ThreadWorker::Core() {
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo

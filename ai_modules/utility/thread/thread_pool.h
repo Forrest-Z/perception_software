@@ -20,11 +20,10 @@
 #include "google/protobuf/stubs/callback.h"
 #include "google/protobuf/stubs/common.h"
 
-#include "modules/perception/lib/thread/concurrent_queue.h"
-#include "modules/perception/lib/thread/mutex.h"
-#include "modules/perception/lib/thread/thread.h"
+#include "utility/thread/concurrent_queue.h"
+#include "utility/thread/mutex.h"
+#include "utility/thread/thread.h"
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -79,4 +78,3 @@ class ThreadPoolWorker : public Thread {
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo

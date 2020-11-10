@@ -14,15 +14,14 @@
  * limitations under the License.
  *****************************************************************************/
 
-#include "modules/perception/lib/thread/concurrent_queue.h"
+#include "utility/thread/concurrent_queue.h"
 
 #include <thread>
 
 #include "cyber/common/log.h"
 #include "gtest/gtest.h"
-#include "modules/perception/lib/thread/thread.h"
+#include "utility/thread/thread.h"
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -112,4 +111,3 @@ TEST_F(ConcurrentQueueTest, TestAll) {
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo

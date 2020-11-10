@@ -14,9 +14,8 @@
  * limitations under the License.
  *****************************************************************************/
 
-#include "modules/perception/lib/registerer/registerer.h"
+#include "utility/registerer/registerer.h"
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -46,4 +45,3 @@ bool GetRegisteredClasses(
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo

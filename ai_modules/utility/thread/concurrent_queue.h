@@ -17,9 +17,8 @@
 
 #include <queue>
 
-#include "modules/perception/lib/thread/mutex.h"
+#include "utility/thread/mutex.h"
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -148,4 +147,3 @@ class FixedSizeConQueue : public ConcurrentQueue<Data> {
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo

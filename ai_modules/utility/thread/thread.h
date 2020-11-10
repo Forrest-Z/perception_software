@@ -17,7 +17,6 @@
 
 #include <string>
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -65,4 +64,3 @@ class Thread {
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo

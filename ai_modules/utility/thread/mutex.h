@@ -17,7 +17,6 @@
 
 #include <pthread.h>
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -152,4 +151,3 @@ class WriterMutexLock {
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo

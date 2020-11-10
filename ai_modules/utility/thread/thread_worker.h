@@ -20,7 +20,6 @@
 #include <memory>
 #include <thread>
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -61,4 +60,3 @@ class ThreadWorker {
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo

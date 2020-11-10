@@ -17,10 +17,9 @@
 
 #include "cyber/common/log.h"
 
-#include "modules/perception/lib/thread/concurrent_queue.h"
-#include "modules/perception/lib/thread/thread_pool.h"
+#include "utility/thread/concurrent_queue.h"
+#include "utility/thread/thread_pool.h"
 
-namespace apollo {
 namespace perception {
 namespace lib {
 
@@ -83,4 +82,3 @@ TEST(ThreadPoolTest, Test) {
 
 }  // namespace lib
 }  // namespace perception
-}  // namespace apollo
