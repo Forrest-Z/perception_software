@@ -65,33 +65,33 @@ void LidarRANSACFitGround::removeFloor(const PCLPointCloud::Ptr &srcPointcloud, 
     }
     else if(flag == 1)
     {
-       pcl::SACSegmentation<PCLPoint> seg;
-       pcl::PointIndices::Ptr inliers(new pcl::PointIndices);
-       pcl::ModelCoefficients::Ptr coefficients(new pcl::ModelCoefficients);
+    //    pcl::SACSegmentation<PCLPoint> seg;
+    //    pcl::PointIndices::Ptr inliers(new pcl::PointIndices);
+    //    pcl::ModelCoefficients::Ptr coefficients(new pcl::ModelCoefficients);
 
-       seg.setOptimizeCoefficients(true);
-       seg.setModelType(pcl::SACMODEL_PERPENDICULAR_PLANE);
-       seg.setMethodType(pcl::SAC_RANSAC);
-       seg.setMaxIterations(100);
-       seg.setAxis(Eigen::Vector3f(0, 0, 1));
-       seg.setEpsAngle(floorMaxAngle);
+    //    seg.setOptimizeCoefficients(true);
+    //    seg.setModelType(pcl::SACMODEL_PERPENDICULAR_PLANE);
+    //    seg.setMethodType(pcl::SAC_RANSAC);
+    //    seg.setMaxIterations(100);
+    //    seg.setAxis(Eigen::Vector3f(0, 0, 1));
+    //    seg.setEpsAngle(floorMaxAngle);
 
-       seg.setDistanceThreshold(maxHeight);  // floor distance
-       seg.setOptimizeCoefficients(true);
-       seg.setInputCloud(srcPointcloud);
-       seg.setIndices(inputIndices);
-       seg.segment(*inliers, *coefficients);
-       if (inliers->indices.size() == 0)
-       {
-           std::cout << "Could not estimate a planar model for the given dataset." << std::endl;
-       }
+    //    seg.setDistanceThreshold(maxHeight);  // floor distance
+    //    seg.setOptimizeCoefficients(true);
+    //    seg.setInputCloud(srcPointcloud);
+    //    seg.setIndices(inputIndices);
+    //    seg.segment(*inliers, *coefficients);
+    //    if (inliers->indices.size() == 0)
+    //    {
+    //        std::cout << "Could not estimate a planar model for the given dataset." << std::endl;
+    //    }
 
-       // REMOVE THE FLOOR FROM THE CLOUD
-       pcl::ExtractIndices<PCLPoint> extract;
-       extract.setInputCloud(srcPointcloud);
-       extract.setIndices(inliers);
-       extract.setNegative(true);  // true removes the indices, false leaves only the indices
-       extract.filter(*dstPointcloud);
+    //    // REMOVE THE FLOOR FROM THE CLOUD
+    //    pcl::ExtractIndices<PCLPoint> extract;
+    //    extract.setInputCloud(srcPointcloud);
+    //    extract.setIndices(inliers);
+    //    extract.setNegative(true);  // true removes the indices, false leaves only the indices
+    //    extract.filter(*dstPointcloud);
     }
     dstPointcloud->header = srcPointcloud->header;
 }

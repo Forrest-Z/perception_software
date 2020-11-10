@@ -36,6 +36,9 @@ add_subdirectory(lidar/robosense)
 #build camera
 add_subdirectory(camera)
 
+#build image_capture
+add_subdirectory(image_capture)
+
 #build visualizer
 add_subdirectory(tools/visualizer)
 

@@ -4,7 +4,8 @@
 #include "common/lidar_processing/pcl_util.h"
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/filters/extract_indices.h>
-#include <pcl/keypoints/uniform_sampling.h>
+//#include <pcl/keypoints/uniform_sampling.h>
+#include <pcl/filters/uniform_sampling.h>
 #include <random>
 #include <iomanip>
 #include <iostream>

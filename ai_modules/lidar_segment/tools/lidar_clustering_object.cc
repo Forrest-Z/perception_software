@@ -6,6 +6,7 @@
 #include "lidar_segment/clustering/cvc_cluster.h"
 #include "lidar_common/merge_object.h"
 #include "lidar_common/object_builder.h"
+#include "lidar_common/lidar_cloud_filter.h"
 #include "show_tools/pcl_show/pcl_show.h"
 
 #define MERGE_THRESHOLD (2.8)
@@ -13,22 +14,26 @@
 using namespace perception::lidar;
 
 int main(int argc, char* argv[]) {
-	const std::string pcd_path = "/home/lpj/github/perception_software/ai_modules/test_data/cloud_120.pcd";
+	const std::string pcd_path = "/home/lpj/github/perception_software/ai_modules/test_data/pcd/cloud_120.pcd";
 	pcl::visualization::PCLVisualizer::Ptr myViewer(new pcl::visualization::PCLVisualizer ("3D Viewer"));
+
+    LidarCloudFilter<PCLPoint> cloudFilter;
 
     LidarGroundExtractor groundExtractor;
     LidarPlaneFitGround planeFitGround;
     LidarRANSACFitGround ransac_ground;
 
-    //EuclideanCluster cluster;
+    EuclideanCluster cluster;
     //RBNNCluster cluster;
-    CVCCluster cluster;
+    //CVCCluster cluster;
     MergeObject mergeObject;
     ObjectBuilder builder;
     std::vector<std::shared_ptr<perception::base::Object>> clusterResult;
     std::vector<std::shared_ptr<perception::base::Object>> mergeResult;
 
 	PCLPointCloud::Ptr cloud(new PCLPointCloud);
+    pcl::PointIndices::Ptr clodeIndex(new pcl::PointIndices);
+    PCLPointCloud::Ptr filteringCloud(new PCLPointCloud);
     PCLPointCloud::Ptr noGroundCloud(new PCLPointCloud);
 	pcl::PCDReader reader;
 	if(reader.read(pcd_path, *cloud) < 0)
@@ -45,8 +50,11 @@ int main(int argc, char* argv[]) {
     myViewer->initCameraParameters();
     myViewer->resetCamera();
 
+    cloudFilter.pointcloudFilteringByX(cloud, -4.5f, 6.0f, clodeIndex);
+    cloudFilter.getFilteringCloudPoint(cloud, clodeIndex, filteringCloud);
+
 	//groundExtractor.filteringGround(cloud, noGroundCloud);
-    planeFitGround.filteringGround(cloud, noGroundCloud);
+    planeFitGround.filteringGround(filteringCloud, noGroundCloud);
     //ransac_ground.filteringGround(cloud, noGroundCloud);
     //ransac_ground.removeFloor(cloud, 1, noGroundCloud);
 

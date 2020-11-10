@@ -35,7 +35,7 @@ void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
                       const base::PolygonDType &polygon);
 
 void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
-                          const std::vector<base::ObjectPtr> &objectList, int begin_index =0);
+                          const std::vector<base::ObjectPtr> &objectList, int begin_index=0);
 
 void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
                           const std::vector<base::ObjectPtr> &objectList, const std::vector<base::ObjectPtr> &trackedObjects);

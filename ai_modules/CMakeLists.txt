@@ -46,6 +46,9 @@ add_subdirectory(lidar_ground)
 #build lidar_segment
 add_subdirectory(lidar_segment)
 
+#build lidar_tracking
+add_subdirectory(lidar_tracking)
+
 #build show_tools
 add_subdirectory(show_tools)
 

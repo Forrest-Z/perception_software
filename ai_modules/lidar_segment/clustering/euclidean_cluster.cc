@@ -16,7 +16,7 @@ namespace lidar {
 EuclideanCluster::EuclideanCluster(){
     // if distance >= 120m, ingnore
     seg_distance_ = {17, 38, 70, 120};
-    cluster_distance_ = {0.4f, 0.7f, 1.0f, 1.5f};
+    cluster_distance_ = {0.4f, 0.7f, 1.5f, 2.0f};
 }
 
 EuclideanCluster::~EuclideanCluster(){

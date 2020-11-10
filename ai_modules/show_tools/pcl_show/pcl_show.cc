@@ -113,7 +113,7 @@ void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
                       const std::vector<base::ObjectPtr> &objectList,
                       int begin_index) {
   int index = begin_index;
-  // viewer->removeAllShapes();
+  viewer->removeAllShapes();
   for (const auto &object : objectList) {
     Eigen::Quaternionf boxQ(1, 0, 0, 0);
     Eigen::Vector3f center;
@@ -200,7 +200,9 @@ void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
     int R = cortable[table_index][0];
     int G = cortable[table_index][1];
     int B = cortable[table_index][2];
-    viewer->addText3D(velocity_text.str(), point, 0.3, R, G, B,
+    // viewer->addText3D(velocity_text.str(), point, 0.3, R, G, B,
+    //                   textidString.str());
+    viewer->addText3D(text.str(), point, 0.3, R, G, B,
                       textidString.str());
     viewer->addCube(center, boxQ, object->size[0], object->size[1],
                     object->size[2], idString.str());
@@ -282,6 +284,8 @@ void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
     index++;
     viewer->addCube(center, boxQ, object->size[0], object->size[1],
                     object->size[2], idString.str());
+    viewer->setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_REPRESENTATION, \
+                                        pcl::visualization::PCL_VISUALIZER_REPRESENTATION_WIREFRAME, idString.str());
     viewer->setShapeRenderingProperties(
         pcl::visualization::PCL_VISUALIZER_COLOR, red, green, blue,
         idString.str());
@@ -334,6 +338,8 @@ void updateViewerData(const pcl::visualization::PCLVisualizer::Ptr viewer,
     index++;
     viewer->addCube(center, boxQ, object->size[0], object->size[1],
                     object->size[2], idString.str());
+    viewer->setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_REPRESENTATION, \
+                                        pcl::visualization::PCL_VISUALIZER_REPRESENTATION_WIREFRAME, idString.str());
     viewer->setShapeRenderingProperties(
         pcl::visualization::PCL_VISUALIZER_COLOR, red, green, blue,
         idString.str());
