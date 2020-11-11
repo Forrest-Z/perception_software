@@ -4,17 +4,21 @@ project(image_bgs)
 include_directories(${ai_algorithm_BINARY_DIR})
 include_directories(${ai_algorithm_SOURCE_DIR})
 
-#collect source files
-file(GLOB_RECURSE BGS_SRCS ${PROJECT_SOURCE_DIR}/bgs/*.cpp)
+add_subdirectory(bgs)
 
-#build BGS_SRCS library
-add_library(image_bgs SHARED ${BGS_SRCS})
-target_link_libraries(image_bgs
+#collect source files
+file(GLOB DETECTION_SRCS
+    "${PROJECT_SOURCE_DIR}/tools/*.cpp"
+	)
+list(REMOVE_ITEM DETECTION_SRCS ${PROJECT_SOURCE_DIR}/tools/moving_object_detection.cpp)
+
+add_executable(moving_object_detection ${PROJECT_SOURCE_DIR}/tools/moving_object_detection.cpp ${DETECTION_SRCS})
+target_link_libraries(moving_object_detection
+    image_bgs
     opencv_core
     opencv_imgcodecs 
     opencv_imgproc
     opencv_video
+    opencv_videoio
+    opencv_highgui
 )
-
-install(DIRECTORY "${PROJECT_SOURCE_DIR}" DESTINATION include ${CMAKE_INSTALL_INCLUDEDIR} FILES_MATCHING PATTERN "*.h")
-install(FILES "${ai_algorithm_BINARY_DIR}/libimage_bgs.so" DESTINATION lib ${CMAKE_INSTALL_LIBDIR})
